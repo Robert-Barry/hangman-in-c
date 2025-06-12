@@ -9,3 +9,4 @@ char testWord[] = "dog";
 char *getWord() {
     return testWord;
 }
+
