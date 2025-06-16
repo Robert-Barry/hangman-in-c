@@ -9,7 +9,7 @@
 
     TO-DO:
         - Come up with a word list ^^
-        - Come up with an ASCII drawing of a "hangman"
+        - Come up with an ASCII drawing of a "hangman" ^^
         - reprsent a word with blank spaces
         - let the user guess a letter
         - if the letter is in the word, replace the 
@@ -26,6 +26,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "include/wordlist.h"
+#include "include/game_state.h"
+#include "include/hang_image.h"
 
 void buildBlanks(char *word, char *blanks) {
 
@@ -50,6 +52,8 @@ int main(void) {
     }
 
     printf("\n");
+
+    scaffold(complete);
 
     return 0;
 }
