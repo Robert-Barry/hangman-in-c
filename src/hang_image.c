@@ -1,16 +1,36 @@
 #include <stdio.h>
 #include "../include/game_state.h"
 
+/**
+ *  topScaffold
+ * 
+ *  Convenience function.
+ *  Draws the top of the scaffold for Hangman
+ * 
+ */
 void topScaffold() {
     printf("   ______\n");
     printf("  |      |\n");
 }
 
+/**
+ *  bottomScaffold
+ * 
+ *  Convenience function.
+ *  Draws the bottom of the scaffold for Hangman
+ * 
+ */
 void bottomScaffold() {
     printf("  |\n");
     printf(" ----\n");
 }
 
+/**
+ *  completeScaffold
+ * 
+ *  Draws the complete scaffold.
+ * 
+ */
 void completeScaffold() {
     void topScaffold();
     void bottomScaffold();
@@ -22,6 +42,12 @@ void completeScaffold() {
     bottomScaffold();
 }
 
+/**
+ *  emptyScaffold
+ * 
+ *  Draws a scaffold without the man
+ * 
+ */
 void emptyScaffold() {
     void topScaffold();
     void bottomScaffold();
@@ -33,6 +59,12 @@ void emptyScaffold() {
     bottomScaffold();
 }
 
+/**
+ *  scaffold
+ * 
+ *  Determines which scaffold to draw to the screen.
+ * 
+ */
 void scaffold(State state) {
     void topScaffold();
     void bottomScaffold();
