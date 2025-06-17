@@ -1,3 +1,5 @@
+# This Makefile is an experiment in using a build system to build C applications.
+
 objects = build/hangman.o build/wordlist.o build/hang_image.o build/game_build.o build/gameplay.o
 includes = include/wordlist.h include/game_state.h include/game_build.h include/gameplay.h include/hang_image.h
 

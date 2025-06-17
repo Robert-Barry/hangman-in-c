@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 /** 
  * buildBlanks
  * 
@@ -17,5 +19,34 @@ void buildBlanks(char blanks[], int length) {
 
     for (i = 0; i < length; ++i) {
         blanks[i] = '_';
+    }
+}
+
+/**
+ *  printUsedLetters
+ * 
+ *  Prints the letters that the used has already guessed
+ *  but were not in the solution.
+ * 
+ *  INPUTS: 
+ *      char usedLetters[]: an array of all the guessed letters
+ *      int length: the length of the array
+ * 
+ *  OUTPUTS: 
+ *      NO RETURN.
+ * 
+ */
+void printUsedLetters(char *usedLetters, char *ptr) {
+    // Check if the pointers point to the same location in memory.
+    // If they no, no letters have been added to usedLetters.
+    // Otehrwise, print the letters.
+    if (usedLetters == ptr) {
+        printf("\n");
+    } else {
+        while (usedLetters != ptr) {
+            printf("%c ", *usedLetters);
+            ++usedLetters;
+        }
+        printf("\n");
     }
 }

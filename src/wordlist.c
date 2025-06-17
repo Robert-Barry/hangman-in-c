@@ -64,3 +64,6 @@ void printWord(char *word) {
     printf("\n");
 }
 
+void wasLetterUsed(char usedLetters[]) {
+    
+}
