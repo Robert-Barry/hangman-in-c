@@ -40,9 +40,12 @@ void printUsedLetters(char *usedLetters, char *ptr) {
     // Check if the pointers point to the same location in memory.
     // If they no, no letters have been added to usedLetters.
     // Otehrwise, print the letters.
+    printf("\nUsed Letters: ");
+
     if (usedLetters == ptr) {
         printf("\n");
     } else {
+
         while (usedLetters != ptr) {
             printf("%c ", *usedLetters);
             ++usedLetters;

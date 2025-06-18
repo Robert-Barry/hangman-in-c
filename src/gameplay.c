@@ -69,4 +69,16 @@ bool userGuess(char letter, char *word) {
     return false;
 }
 
+int addLetter(char letter, char *word, char blanks[], int length, int found) {
+    int i;
+    int foundLetters = found;
 
+    for (i = 0; i < length; ++i, ++word) {
+        if (letter == *word) {
+            blanks[i] = letter;
+            ++foundLetters;
+        }
+    }
+    printf("FOUND: %i\n", foundLetters);
+    return foundLetters;
+}

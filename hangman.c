@@ -45,6 +45,8 @@ int main(void) {
     bool playAgain = true;
     bool gameInPlay = true;
     int i;
+    int foundLetters = 0;
+    State gameState = 0;
 
     // Create a location in memory to hold 26 letters.
     char *usedLetters = (char *) malloc(NUMBER_OF_LETTERS * sizeof(char));
@@ -65,23 +67,29 @@ int main(void) {
     // The outer playAgain loop plays sets-up and plays through a single
     // game of Hangman.
     while (playAgain == true) {
+        // Get the new word & its length to use in the game
         word = getWord();
         int length = wordLength(word);
 
+        // Create the blank spaces to be shown to the player
         char blanks[length];
         buildBlanks(blanks, length);
 
         printf("The word you are guessing has %i letters.\n\n", length);
+
+        // Draw an empty hangman scaffold at the start of the game
+        scaffold(empty);
         
         while(gameInPlay == true) {
 
-            scaffold(empty);
-
-            printUsedLetters(usedLetters, ptr);
+            
             
             for (i = 0; i < length; ++i) {
                 printf("%c ", blanks[i]);
             }
+            printf("\n");
+
+            printUsedLetters(usedLetters, ptr);
 
             printf("\n\n");
 
@@ -94,11 +102,20 @@ int main(void) {
             
 
             if (guess == true) {
-                printf("The guess is correct.\n");
+                foundLetters = addLetter(letterGuess, word, blanks, length, foundLetters);
+                printf("FOUND: %i, LENGTH: %i\n", foundLetters, length);
+                if (foundLetters == length) {
+                    printf("\n\n***\nWIN\n***\n\n");
+                }
             } else {
                 printf("The guess is incorrect.\n");
                 ptr = addUsedLetter(letterGuess, usedLetters, ptr);
+                ++gameState;
+                if (gameState == complete) {
+                    printf("\n\n***\nLOSE\n***\n\n");
+                }
             }
+            scaffold(gameState);
         }
     }
 
