@@ -69,16 +69,70 @@ bool userGuess(char letter, char *word) {
     return false;
 }
 
+/**
+ *  addLetter
+ * 
+ *  adds a letter to the user's blanks when the make a correct letter guess
+ * 
+ *  INPUTS: 
+ *      char letter: the letter to add to the blanks array
+ *      char *word: the word that contains the correct letter guess
+ *      char blanks[]: the blank spaces shown to the user, including correct letters
+ *      int length: the length of the word
+ *      int found: keep track of how many letters were found
+ * 
+ *  OUTPUTS: 
+ *      Returns an int representing the number of correct letters that matched in the
+ *      given word the player is trying to guess.
+ */
 int addLetter(char letter, char *word, char blanks[], int length, int found) {
     int i;
     int foundLetters = found;
-
+    
+    // Loop through each letter in the given word to see how many letters match
+    // the player's chosen letter.
     for (i = 0; i < length; ++i, ++word) {
         if (letter == *word) {
             blanks[i] = letter;
             ++foundLetters;
         }
     }
-    printf("FOUND: %i\n", foundLetters);
+
+    // Return how many letters were found in the word.
     return foundLetters;
+}
+
+/**
+ *  playAgain
+ * 
+ *  Ask the player if they want to play another game or quit. 
+ * 
+ *  INPUTS: 
+ *      NONE. 
+ * 
+ *  OUTPUTS: 
+ *      Returns true if the player wants to play again. 
+ */
+bool playAgain() {
+    char playAgain;
+    bool choice;       // True if the player wants to play again
+    bool flag = true;  // Loop if the user gives a bad answer
+
+    printf("Would you like to play again? (y/n): ");
+    scanf(" %c", &playAgain);
+
+    do {
+        if (playAgain == 'Y' || playAgain == 'y') {
+            choice = true;
+            flag = false;
+        } else if (playAgain == 'N' || playAgain == 'n') {
+            choice = false;
+            flag = false;
+        } else {
+            printf("Please enter only 'y' or 'n'.\n");
+            flag = true;
+        }
+    } while (flag);
+
+    return choice;
 }

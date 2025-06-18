@@ -8,19 +8,8 @@
     user loses the game.
 
     TO-DO:
-        - Come up with a word list ^^
-        - Come up with an ASCII drawing of a "hangman" ^^
-        - reprsent a word with blank spaces ^^^
-        - let the user guess a letter ^^^
-        - if the letter is in the word, replace the 
-          appropriate blank space with the letter
-        - if the letter is not in the word, draw
-          a piece of the hangman
-        - If the user guesses the word before the
-          hangman is drawn, the user wins 
-        - If the hangman is drawn before the user
-          guesses the word, the user loses
-        - End the game
+        - Check the player's answers for valid input
+        - Refactor some parts of the code
 */
 
 #include <stdio.h>
@@ -42,11 +31,11 @@ int main(void) {
     char *word;
     char letterGuess; 
     bool guess;
-    bool playAgain = true;
-    bool gameInPlay = true;
+    bool again = true;
+    bool gameInPlay;
     int i;
-    int foundLetters = 0;
-    State gameState = 0;
+    int foundLetters;
+    State gameState;
 
     // Create a location in memory to hold 26 letters.
     char *usedLetters = (char *) malloc(NUMBER_OF_LETTERS * sizeof(char));
@@ -66,7 +55,12 @@ int main(void) {
 
     // The outer playAgain loop plays sets-up and plays through a single
     // game of Hangman.
-    while (playAgain == true) {
+    while (again == true) {
+        // Set the state of the game to the beginning
+        foundLetters = 0;
+        gameState = empty;
+        gameInPlay = true;
+
         // Get the new word & its length to use in the game
         word = getWord();
         int length = wordLength(word);
@@ -80,15 +74,15 @@ int main(void) {
         // Draw an empty hangman scaffold at the start of the game
         scaffold(empty);
         
+        // Create a game loop to play a single game of hangman
         while(gameInPlay == true) {
-
             
-            
+            // Print the blanks
             for (i = 0; i < length; ++i) {
                 printf("%c ", blanks[i]);
             }
             printf("\n");
-
+            
             printUsedLetters(usedLetters, ptr);
 
             printf("\n\n");
@@ -96,23 +90,29 @@ int main(void) {
             printf("Please guess a letter: ");
             scanf(" %c", &letterGuess);
             printf("You guessed %c\n", letterGuess);
-
+            
+            // True if the user gave a correct letter
             guess = userGuess(letterGuess, word);
             
-            
-
+            /** TODO: Refactor this code */
             if (guess == true) {
                 foundLetters = addLetter(letterGuess, word, blanks, length, foundLetters);
                 printf("FOUND: %i, LENGTH: %i\n", foundLetters, length);
                 if (foundLetters == length) {
-                    printf("\n\n***\nWIN\n***\n\n");
+                    printf("\n\n***\n\nYOU WIN\n\n***\n\n");
+                    again = playAgain();
+                    gameInPlay = false;
+                    break;
                 }
             } else {
                 printf("The guess is incorrect.\n");
                 ptr = addUsedLetter(letterGuess, usedLetters, ptr);
                 ++gameState;
                 if (gameState == complete) {
-                    printf("\n\n***\nLOSE\n***\n\n");
+                    printf("\n\n***\n\nYOU LOSE\n\n***\n\n");
+                    again = playAgain();
+                    gameInPlay = false;
+                    break;
                 }
             }
             scaffold(gameState);
