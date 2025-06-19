@@ -8,8 +8,11 @@
     user loses the game.
 
     TO-DO:
-        - Check the player's answers for valid input
+        - Check the player's answers for valid input ^^
+        - Make all player's inputs lower case ^^
         - Refactor some parts of the code
+        - Choose a random word from the word list
+        - Track which words have already been used in previous games
 */
 
 #include <stdio.h>
@@ -86,9 +89,10 @@ int main(void) {
             printUsedLetters(usedLetters, ptr);
 
             printf("\n\n");
+            
+            // Have the player choose a letter
+            letterGuess = userChoice();
 
-            printf("Please guess a letter: ");
-            scanf(" %c", &letterGuess);
             printf("You guessed %c\n", letterGuess);
             
             // True if the user gave a correct letter
@@ -97,9 +101,9 @@ int main(void) {
             /** TODO: Refactor this code */
             if (guess == true) {
                 foundLetters = addLetter(letterGuess, word, blanks, length, foundLetters);
-                printf("FOUND: %i, LENGTH: %i\n", foundLetters, length);
+
                 if (foundLetters == length) {
-                    printf("\n\n***\n\nYOU WIN\n\n***\n\n");
+                    printf("\n\n******\n\nYOU WIN\n\n******\n\n");
                     again = playAgain();
                     gameInPlay = false;
                     break;
@@ -109,7 +113,7 @@ int main(void) {
                 ptr = addUsedLetter(letterGuess, usedLetters, ptr);
                 ++gameState;
                 if (gameState == complete) {
-                    printf("\n\n***\n\nYOU LOSE\n\n***\n\n");
+                    printf("\n\n******\n\nYOU LOSE\n\n******\n\n");
                     again = playAgain();
                     gameInPlay = false;
                     break;

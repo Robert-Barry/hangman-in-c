@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <ctype.h>
 
 /**
  *  addToUsedLetters
@@ -44,6 +45,45 @@ char *addUsedLetter(char letter, char *usedLetters, char *ptr) {
     ++ptr;
 
     return ptr;
+}
+
+/**
+ *  userChoice
+ * 
+ *  Function that takes a letter guessed by the user. If the letter
+ *  is uppercase, make it lowercase. If the guess is not an
+ *  alphabetic character, have the user try again. 
+ * 
+ *  INPUTS: 
+ *      NONE
+ * 
+ *  OUTPUTS: 
+ *      Returns the letter chosen by the user converted to lowercase if necessary. 
+ */
+char userChoice() {
+    char letterGuess;
+    bool flag = true;
+
+    // Ask the user to choose a letter.
+    while (flag) {
+        printf("Please guess a letter: ");
+        scanf(" %c", &letterGuess);
+
+        // If the letter is uppercase, make it lowercase.
+        // If the guess is not aphabetic, try again.
+        if (letterGuess >= 'A' && letterGuess <= 'Z') {
+            printf("LETTER\n");
+            letterGuess = tolower(letterGuess);
+            flag = false;
+        } else if (letterGuess >= 'a' && letterGuess <= 'z') {
+            flag = false;
+        } else { 
+            printf("Your guess was invalid.\n");
+            printf("Please enter only letters for the guess.\n\n");
+        }
+    }
+    
+    return letterGuess;
 }
 
 /**
