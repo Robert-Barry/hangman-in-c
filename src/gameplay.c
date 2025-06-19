@@ -26,7 +26,7 @@
  */
 
 
-char *addUsedLetter(char letter, char *usedLetters, char *ptr) {
+char *addUsedLetter(const char letter, char *usedLetters, char *ptr) {
     int i;
 
     // Loop through the memory to see if the letter guessed has
@@ -82,7 +82,8 @@ char userChoice() {
             printf("Please enter only letters for the guess.\n\n");
         }
     }
-    
+    printf("You guessed %c\n", letterGuess);
+
     return letterGuess;
 }
 
@@ -99,7 +100,7 @@ char userChoice() {
  *      Returns true if the user made a correct guess,
  *      false if the guess was incorrect. 
  */
-bool userGuess(char letter, char *word) {
+bool userGuess(const char letter, const char *word) {
     while (*word != '\0') {
         if (*word == letter) {
             return true;
@@ -125,7 +126,7 @@ bool userGuess(char letter, char *word) {
  *      Returns an int representing the number of correct letters that matched in the
  *      given word the player is trying to guess.
  */
-int addLetter(char letter, char *word, char blanks[], int length, int found) {
+int addLetter(const char letter, const char *word, char blanks[], const int length, const int found) {
     int i;
     int foundLetters = found;
     

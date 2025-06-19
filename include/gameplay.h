@@ -1,9 +1,9 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 
-bool userGuess(char letter, char *word);
-char *addUsedLetter(char letter, char *usedLetters, char *ptr);
-int addLetter(char letter, char *word, char blanks[], int length, int found);
+bool userGuess(const char letter, const char *word);
+char *addUsedLetter(const char letter, char *usedLetters, char *ptr);
+int addLetter(const char letter, const char *word, char blanks[], const int length, const int found);
 bool playAgain();
 char userChoice();
 

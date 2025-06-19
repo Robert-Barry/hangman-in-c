@@ -14,7 +14,7 @@
  *     NO RETURN. Uses a reference to an array. 
 */
 
-void buildBlanks(char blanks[], int length) {
+void buildBlanks(char blanks[], const int length) {
     int i;
 
     for (i = 0; i < length; ++i) {
@@ -36,7 +36,7 @@ void buildBlanks(char blanks[], int length) {
  *      NO RETURN.
  * 
  */
-void printUsedLetters(char *usedLetters, char *ptr) {
+void printUsedLetters(char *usedLetters, const char *ptr) {
     // Check if the pointers point to the same location in memory.
     // If they no, no letters have been added to usedLetters.
     // Otehrwise, print the letters.

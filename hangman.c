@@ -8,11 +8,9 @@
     user loses the game.
 
     TO-DO:
-        - Check the player's answers for valid input ^^
-        - Make all player's inputs lower case ^^
-        - Refactor some parts of the code
         - Choose a random word from the word list
         - Track which words have already been used in previous games
+        - Put all the state in a single struct: again, gameInPlay, foundLetters, scaffoldState
 */
 
 #include <stdio.h>
@@ -25,7 +23,6 @@
 #include "include/game_build.h"
 #include "include/gameplay.h"
 
-#define LENGTH(x)  sizeof(x) / sizeof(x[0])
 #define NUMBER_OF_LETTERS  25
 
 
@@ -92,8 +89,6 @@ int main(void) {
             
             // Have the player choose a letter
             letterGuess = userChoice();
-
-            printf("You guessed %c\n", letterGuess);
             
             // True if the user gave a correct letter
             guess = userGuess(letterGuess, word);

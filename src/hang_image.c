@@ -65,7 +65,7 @@ void emptyScaffold() {
  *  Determines which scaffold to draw to the screen.
  * 
  */
-void scaffold(State state) {
+void scaffold(const State state) {
     void topScaffold();
     void bottomScaffold();
     void completeScaffold();
