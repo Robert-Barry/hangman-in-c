@@ -10,7 +10,6 @@
     TO-DO:
         - Choose a random word from the word list
         - Track which words have already been used in previous games
-        - Put all the state in a single struct: again, gameInPlay, foundLetters, scaffoldState
 */
 
 #include <stdio.h>
@@ -99,7 +98,7 @@ int main(void) {
 
                 if (foundLetters == length) {
                     printf("\n\n******\n\nYOU WIN\n\n******\n\n");
-                    again = playAgain();
+                    again = playAgain(usedLetters);
                     gameInPlay = false;
                     break;
                 }
@@ -109,7 +108,7 @@ int main(void) {
                 ++gameState;
                 if (gameState == complete) {
                     printf("\n\n******\n\nYOU LOSE\n\n******\n\n");
-                    again = playAgain();
+                    again = playAgain(usedLetters);
                     gameInPlay = false;
                     break;
                 }

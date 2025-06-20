@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 
 /**
@@ -154,7 +155,7 @@ int addLetter(const char letter, const char *word, char blanks[], const int leng
  *  OUTPUTS: 
  *      Returns true if the player wants to play again. 
  */
-bool playAgain() {
+bool playAgain(char *usedLetters) {
     char playAgain;
     bool choice;       // True if the player wants to play again
     bool flag = true;  // Loop if the user gives a bad answer
@@ -169,6 +170,7 @@ bool playAgain() {
         } else if (playAgain == 'N' || playAgain == 'n') {
             choice = false;
             flag = false;
+            free(usedLetters);
         } else {
             printf("Please enter only 'y' or 'n'.\n");
             flag = true;

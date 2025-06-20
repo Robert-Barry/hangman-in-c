@@ -1,17 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-// An array of word that can be used for the game
-char *words[] = {
-    "cat", "train", "elephant", "submarine"
-};
-
-// A temporary test word
-char *testWord = "dog";
+#define LENGTH(x)  (sizeof(x) / sizeof(x[0]))
 
 /**
  *  getWord
  * 
- *  Returns a word for the game. 
+ *  Returns a word for the game. As a word is used,
+ *  the word is replaced by a '0' so this it won't be used
+ *  again in subsequent games
  * 
  *  INPUTS: 
  *      NO INPUTS.
@@ -20,7 +18,20 @@ char *testWord = "dog";
  *      Returns a word to be used in the hangman game.
  */
 char *getWord() {
-    return testWord;
+    char *wordArray[] = {
+        "cat", "dog", "train", "elephant", "submarine", "cabinet", "ant", "car"
+    };
+
+    srand(time(NULL));
+    int randomNumber;
+    char *word;
+
+    // Choose a random number and pick an index
+    // from the words array.
+    randomNumber = rand() % LENGTH(wordArray);
+    word = wordArray[randomNumber];
+
+    return word;
 }
 
 /**
