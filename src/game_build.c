@@ -39,10 +39,10 @@ void buildBlanks(char blanks[], const int length) {
 void printUsedLetters(char *usedLetters, const char *ptr) {
     // Check if the pointers point to the same location in memory.
     // If they no, no letters have been added to usedLetters.
-    // Otehrwise, print the letters.
+    // Otherwise, print the letters.
     printf("\nUsed Letters: ");
 
-    if (usedLetters == ptr) {
+    if (usedLetters == ptr && usedLetters != NULL) {
         printf("\n");
     } else {
 

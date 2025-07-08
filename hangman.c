@@ -8,8 +8,8 @@
     user loses the game.
 
     TO-DO:
-        - Choose a random word from the word list
-        - Track which words have already been used in previous games
+        - Fix an issue where a user can repeatedly enter a correct letter
+        - Fix an issue where play again enters an infinite loop on an invalid selection
 */
 
 #include <stdio.h>
@@ -97,8 +97,18 @@ int main(void) {
                 foundLetters = addLetter(letterGuess, word, blanks, length, foundLetters);
 
                 if (foundLetters == length) {
+                    scaffold(gameState);
+                    for (i = 0; i < length; ++i) {
+                        printf("%c ", blanks[i]);
+                    }
+                    printf("\n");
                     printf("\n\n******\n\nYOU WIN\n\n******\n\n");
+                    //printf("The word was %s\n\n", word);
                     again = playAgain(usedLetters);
+                    // Reset the ptr to point to the start of usedLetters
+                    if (again) {
+                        ptr = usedLetters;
+                    }
                     gameInPlay = false;
                     break;
                 }
@@ -109,6 +119,10 @@ int main(void) {
                 if (gameState == complete) {
                     printf("\n\n******\n\nYOU LOSE\n\n******\n\n");
                     again = playAgain(usedLetters);
+                    // Reset the ptr to point to the start of usedLetters
+                    if (again) {
+                        ptr = usedLetters;
+                    }
                     gameInPlay = false;
                     break;
                 }
