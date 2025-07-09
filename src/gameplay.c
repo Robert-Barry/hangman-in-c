@@ -34,7 +34,7 @@ char *addUsedLetter(const char letter, char *usedLetters, char *ptr) {
     // already been guessed.
     while (usedLetters != ptr) {
         if (letter == *usedLetters) {
-            printf("You've already tried that letter.\n");
+            printf("You've already guessed that letter.\n");
             return ptr;
         }
         ++usedLetters;
@@ -114,7 +114,7 @@ bool userGuess(const char letter, const char *word) {
 /**
  *  addLetter
  * 
- *  adds a letter to the user's blanks when the make a correct letter guess
+ *  adds a letter to the user's blanks when they make a correct letter guess
  * 
  *  INPUTS: 
  *      char letter: the letter to add to the blanks array

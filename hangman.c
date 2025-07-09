@@ -36,13 +36,18 @@ int main(void) {
     int foundLetters;
     State gameState;
 
-    // Create a location in memory to hold 26 letters.
+    // Create a location in memory to hold 26 incorrect guessed letters.
     char *usedLetters = (char *) malloc(NUMBER_OF_LETTERS * sizeof(char));
     // ptr tracks where the next wrong guess will be stored in memory.
     char *ptr = usedLetters;
 
+    // Create a location in memory to store 26 correct guessed letters
+    char *goodLetters = (char *) malloc(NUMBER_OF_LETTERS * sizeof(char));
+    // goodPtr tracks where the next correct letter will be stored in memory.
+    char *goodPtr = goodLetters;
+
     // Check that the memory was created.
-    if (usedLetters == NULL) {
+    if (usedLetters == NULL || goodLetters == NULL) {
         printf("Memory allocation failed.\n");
         exit(1);
     }
@@ -94,7 +99,15 @@ int main(void) {
             
             /** TODO: Refactor this code */
             if (guess == true) {
-                foundLetters = addLetter(letterGuess, word, blanks, length, foundLetters);
+                // Create a temporary pointer to compare the returned goodPtr
+                char *tempPtr = goodPtr;
+                // Add a letter to the goodLetters array if it hasn't been used before
+                goodPtr = addUsedLetter(letterGuess, goodLetters, goodPtr);
+                
+                // If goodPtr has changed then add the letter to the blanks
+                if (goodPtr != tempPtr) {
+                    foundLetters = addLetter(letterGuess, word, blanks, length, foundLetters);
+                }
 
                 if (foundLetters == length) {
                     scaffold(gameState);
@@ -106,8 +119,10 @@ int main(void) {
                     //printf("The word was %s\n\n", word);
                     again = playAgain(usedLetters);
                     // Reset the ptr to point to the start of usedLetters
+                    // and goodPtr to point to the start of goodLetters
                     if (again) {
                         ptr = usedLetters;
+                        goodPtr = goodLetters;
                     }
                     gameInPlay = false;
                     break;
@@ -120,8 +135,10 @@ int main(void) {
                     printf("\n\n******\n\nYOU LOSE\n\n******\n\n");
                     again = playAgain(usedLetters);
                     // Reset the ptr to point to the start of usedLetters
+                    // and goodPtr to point to the start of goodLetters
                     if (again) {
                         ptr = usedLetters;
+                        goodPtr = goodLetters;
                     }
                     gameInPlay = false;
                     break;
