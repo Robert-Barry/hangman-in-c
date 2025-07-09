@@ -160,10 +160,11 @@ bool playAgain(char *usedLetters) {
     bool choice;       // True if the player wants to play again
     bool flag = true;  // Loop if the user gives a bad answer
 
-    printf("Would you like to play again? (y/n): ");
-    scanf(" %c", &playAgain);
+    
 
     do {
+        printf("Would you like to play again? (y/n): ");
+        scanf(" %c", &playAgain);
         if (playAgain == 'Y' || playAgain == 'y') {
             choice = true;
             flag = false;
@@ -172,7 +173,7 @@ bool playAgain(char *usedLetters) {
             flag = false;
             free(usedLetters);
         } else {
-            printf("Please enter only 'y' or 'n'.\n");
+            printf("Please enter only 'y' or 'n'.\n\n");
             flag = true;
         }
     } while (flag);

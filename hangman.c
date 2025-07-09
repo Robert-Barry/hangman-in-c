@@ -8,7 +8,6 @@
     user loses the game.
 
     TO-DO:
-        - Fix an issue where a user can repeatedly enter a correct letter
         - Fix an issue where play again enters an infinite loop on an invalid selection
 */
 
@@ -132,6 +131,7 @@ int main(void) {
                 ptr = addUsedLetter(letterGuess, usedLetters, ptr);
                 ++gameState;
                 if (gameState == complete) {
+                    scaffold(gameState);
                     printf("\n\n******\n\nYOU LOSE\n\n******\n\n");
                     again = playAgain(usedLetters);
                     // Reset the ptr to point to the start of usedLetters
