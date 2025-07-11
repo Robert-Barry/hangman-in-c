@@ -1,5 +1,25 @@
 #include <stdio.h>
 
+/**
+ *  welcome
+ * 
+ *  Text to welcome the player to the game and to
+ *  briefly explain how the game works.
+ * 
+ *  INPUTS:
+ *      none
+ * 
+ *  OUTPUTS:
+ *      none
+ */
+void welcome() {
+    printf("Welcome to HANGMAN!\n\n");
+    printf("In this simple game, you try to guess the letters\n");
+    printf("in a word before the hangman is drawn. If you get\n");
+    printf("all the letters in the word you win.\n\n");
+}
+
+
 /** 
  * buildBlanks
  * 
@@ -21,6 +41,7 @@ void buildBlanks(char blanks[], const int length) {
         blanks[i] = '_';
     }
 }
+
 
 /**
  *  printUsedLetters

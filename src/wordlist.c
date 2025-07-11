@@ -6,24 +6,29 @@
 
 /**
  *  getWord
+ *  wordlist.c
  * 
  *  Returns a word for the game. As a word is used,
  *  the word is replaced by a '0' so this it won't be used
  *  again in subsequent games
  * 
  *  INPUTS: 
- *      NO INPUTS.
+ *      none
  * 
  *  OUTPUTS: 
  *      Returns a word to be used in the hangman game.
  */
 char *getWord() {
+    // An array of string pointers.
     char *wordArray[] = {
         "cat", "dog", "train", "elephant", "submarine", "cabinet", "ant", "car"
     };
 
+    // Set-up a random number to choose.
     srand(time(NULL));
     int randomNumber;
+
+    // A char pointer to store the word chosen randomly.
     char *word;
 
     // Choose a random number and pick an index
@@ -36,6 +41,7 @@ char *getWord() {
 
 /**
  *  wordLength
+ *  wordlist.c
  * 
  *  Calculates the length of a given word. 
  * 
@@ -48,6 +54,8 @@ char *getWord() {
 int wordLength(char *word) {
     int count = 0;
 
+    // Loop through the char pointer an count the number
+    // of letters are in the string.
     while (*word != '\0') {
         ++count;
         ++word;
@@ -58,6 +66,7 @@ int wordLength(char *word) {
 
 /**
  *  printWord
+ *  wordlist.c
  * 
  *  Print the chosen word. 
  * 
@@ -65,7 +74,7 @@ int wordLength(char *word) {
  *      char *word: the word to be printed.
  * 
  *  OUTPUTS:
- *      NO OUTPUTS. 
+ *      none
  */
 void printWord(char *word) {
     while (*word != '\0') {
@@ -73,8 +82,4 @@ void printWord(char *word) {
         ++word;
     }
     printf("\n");
-}
-
-void wasLetterUsed(char usedLetters[]) {
-    
 }

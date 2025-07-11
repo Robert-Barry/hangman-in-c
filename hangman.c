@@ -7,8 +7,6 @@
     is finished before the user guesses the word, the
     user loses the game.
 
-    TO-DO:
-        - Fix an issue where play again enters an infinite loop on an invalid selection
 */
 
 #include <stdio.h>
@@ -26,23 +24,26 @@
 
 int main(void) {
     // Variables
-    char *word;
-    char letterGuess; 
-    bool guess;
-    bool again = true;
-    bool gameInPlay;
-    int i;
-    int foundLetters;
-    State gameState;
+    char *word;          // The word to be guessed
+    char letterGuess;    // The letter the player chooses to guess
+    bool guess;          // True if the player gives a correct letter guess
+    bool again = true;   // True when the player wants to play again
+    bool gameInPlay;     // True if a game is in progress
+    int i;               // For keeping track in loops
+    int foundLetters;    // The number of letters a player has successfully guessed
+    State gameState;     // An enum to track the state if the game using the scaffold
 
-    // Create a location in memory to hold 26 incorrect guessed letters.
+    // The following could have easily been done with arrays, but this was an
+    // experiment in dynamic memory allocation.
+
+    // Create a location in memory to hold 26 incorrectly guessed letters.
     char *usedLetters = (char *) malloc(NUMBER_OF_LETTERS * sizeof(char));
     // ptr tracks where the next wrong guess will be stored in memory.
     char *ptr = usedLetters;
 
-    // Create a location in memory to store 26 correct guessed letters
+    // Create a location in memory to store 26 correctly guessed letters
     char *goodLetters = (char *) malloc(NUMBER_OF_LETTERS * sizeof(char));
-    // goodPtr tracks where the next correct letter will be stored in memory.
+    // goodPtr tracks where the next correct guess will be stored in memory.
     char *goodPtr = goodLetters;
 
     // Check that the memory was created.
@@ -51,12 +52,10 @@ int main(void) {
         exit(1);
     }
     
-    printf("Welcome to HANGMAN!\n\n");
-    printf("In this simple game, you try to guess the letters\n");
-    printf("in a word before the hangman is drawn. If you get\n");
-    printf("all the letters in the word you win.\n\n");
+    // Text that welcomes the player to the game.
+    welcome();
 
-    // The outer playAgain loop plays sets-up and plays through a single
+    // The outer playAgain loop sets-up and plays through a single
     // game of Hangman.
     while (again == true) {
         // Set the state of the game to the beginning
@@ -115,7 +114,6 @@ int main(void) {
                     }
                     printf("\n");
                     printf("\n\n******\n\nYOU WIN\n\n******\n\n");
-                    //printf("The word was %s\n\n", word);
                     again = playAgain(usedLetters);
                     // Reset the ptr to point to the start of usedLetters
                     // and goodPtr to point to the start of goodLetters
