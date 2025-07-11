@@ -3,6 +3,7 @@
 
 void welcome();
 void buildBlanks(char blanks[], int length);
+void printBlanks(char blanks[], int length);
 void printUsedLetters(char *usedLetters, const char *ptr);
 
 #endif

@@ -3,8 +3,8 @@
 
 /**
  *  topScaffold
+ *  hang_image.c
  * 
- *  Convenience function.
  *  Draws the top of the scaffold for Hangman
  * 
  */
@@ -15,8 +15,8 @@ void topScaffold() {
 
 /**
  *  bottomScaffold
+ *  hang_image.c
  * 
- *  Convenience function.
  *  Draws the bottom of the scaffold for Hangman
  * 
  */
@@ -27,6 +27,7 @@ void bottomScaffold() {
 
 /**
  *  completeScaffold
+ *  hang_image.c
  * 
  *  Draws the complete scaffold.
  * 
@@ -44,6 +45,7 @@ void completeScaffold() {
 
 /**
  *  emptyScaffold
+ *  hang_image.c
  * 
  *  Draws a scaffold without the man
  * 
@@ -61,8 +63,12 @@ void emptyScaffold() {
 
 /**
  *  scaffold
+ *  hang_image.c
  * 
  *  Determines which scaffold to draw to the screen.
+ * 
+ *  INPUTS:
+ *      const State state: The current state of the game
  * 
  */
 void scaffold(const State state) {

@@ -2,6 +2,7 @@
 
 /**
  *  welcome
+ *  game_build.c
  * 
  *  Text to welcome the player to the game and to
  *  briefly explain how the game works.
@@ -22,6 +23,7 @@ void welcome() {
 
 /** 
  * buildBlanks
+ * game_build.c
  * 
  * Function to build a blank string from the given
  * length of a word.
@@ -31,7 +33,7 @@ void welcome() {
  *     int length: How many blanks should there be
  * 
  * OUTPUT:
- *     NO RETURN. Uses a reference to an array. 
+ *     none
 */
 
 void buildBlanks(char blanks[], const int length) {
@@ -44,7 +46,25 @@ void buildBlanks(char blanks[], const int length) {
 
 
 /**
+ * print_blanks
+ * game_build.c
+ * 
+ * Prints the blanks and the guessed letters the user has
+ * already successfully found
+ * 
+ * 
+ */
+void printBlanks(char blanks[], int length) {
+    // Print the blanks
+    for (int i = 0; i < length; ++i) {
+        printf("%c ", blanks[i]);
+    }
+    printf("\n");
+}
+
+/**
  *  printUsedLetters
+ *  game_build.c
  * 
  *  Prints the letters that the used has already guessed
  *  but were not in the solution.
@@ -54,7 +74,7 @@ void buildBlanks(char blanks[], const int length) {
  *      int length: the length of the array
  * 
  *  OUTPUTS: 
- *      NO RETURN.
+ *      none
  * 
  */
 void printUsedLetters(char *usedLetters, const char *ptr) {

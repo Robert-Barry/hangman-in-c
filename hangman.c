@@ -79,11 +79,15 @@ int main(void) {
         // Create a game loop to play a single game of hangman
         while(gameInPlay == true) {
             
+            printBlanks(blanks, length);
+            
+            /*
             // Print the blanks
             for (i = 0; i < length; ++i) {
                 printf("%c ", blanks[i]);
             }
             printf("\n");
+            */
             
             printUsedLetters(usedLetters, ptr);
 
