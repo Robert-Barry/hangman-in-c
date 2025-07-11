@@ -81,14 +81,6 @@ int main(void) {
             
             printBlanks(blanks, length);
             
-            /*
-            // Print the blanks
-            for (i = 0; i < length; ++i) {
-                printf("%c ", blanks[i]);
-            }
-            printf("\n");
-            */
-            
             printUsedLetters(usedLetters, ptr);
 
             printf("\n\n");
@@ -99,7 +91,6 @@ int main(void) {
             // True if the user gave a correct letter
             guess = userGuess(letterGuess, word);
             
-            /** TODO: Refactor this code */
             if (guess == true) {
                 // Create a temporary pointer to compare the returned goodPtr
                 char *tempPtr = goodPtr;
@@ -108,17 +99,23 @@ int main(void) {
                 
                 // If goodPtr has changed then add the letter to the blanks
                 if (goodPtr != tempPtr) {
+                    // foundletters tracks if the numebr of letters found matches the length
+                    // of the word being guessed. If it does, all the letters have been found
+                    // and the game has been won.
                     foundLetters = addLetter(letterGuess, word, blanks, length, foundLetters);
                 }
-
+                
                 if (foundLetters == length) {
+                    // The game has been won.
+                    // Show the uncompleted scaffold and the word that was guessed.
                     scaffold(gameState);
-                    for (i = 0; i < length; ++i) {
-                        printf("%c ", blanks[i]);
-                    }
-                    printf("\n");
+                    printBlanks(blanks, length);
+
                     printf("\n\n******\n\nYOU WIN\n\n******\n\n");
+
+                    // As the player if they want to play another game.
                     again = playAgain(usedLetters);
+
                     // Reset the ptr to point to the start of usedLetters
                     // and goodPtr to point to the start of goodLetters
                     if (again) {
@@ -133,7 +130,10 @@ int main(void) {
                 ptr = addUsedLetter(letterGuess, usedLetters, ptr);
                 ++gameState;
                 if (gameState == complete) {
+                    // The game has been lost.
+                    // Print the completed scaffold.
                     scaffold(gameState);
+                    
                     printf("\n\n******\n\nYOU LOSE\n\n******\n\n");
                     again = playAgain(usedLetters);
                     // Reset the ptr to point to the start of usedLetters

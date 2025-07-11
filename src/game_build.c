@@ -52,6 +52,12 @@ void buildBlanks(char blanks[], const int length) {
  * Prints the blanks and the guessed letters the user has
  * already successfully found
  * 
+ * INPUTS:
+ *     char blanks[]: an array containing the blanks an successful letter guesses of the player
+ *     int length: The length of the blanks array.
+ * 
+ * OUTPUTS:
+ *     none
  * 
  */
 void printBlanks(char blanks[], int length) {
